@@ -1,4 +1,6 @@
-# React + Vite
+# Portfolio Website
+
+This is my first attempt at "Vibe Coding". I decided to make cursor make my own portfolio webiste that I will then deploy myself. I don't love front end development so it was quite cool to see how the program does its job.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
