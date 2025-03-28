@@ -28,15 +28,23 @@ const projects = [
     id: 1,
     title: 'NES Emulator',
     description: 'My first attempt at creating an emulator of a console.',
-    image: '/project1.jpg',
+    image: '/src/assets/nesemu.jpg',
     technologies: ['C++', 'Assembly'],
     link: 'https://github.com/awnialq/NES-Emulator',
     demo: 'NESemu',
   },
-  // Add more projects here
+  {
+    id: 2,
+    title: 'MealSense',
+    description: 'A meal automation service for college students',
+    image: '/src/assets/nesemu.jpg',
+    technologies: ['React Native', 'TypeScript','Firebase','Python'],
+    link: 'https://github.com/awnialq/NES-Emulator',
+    demo: 'NESemu',
+  }
 ];
 
-const technologies = ['All', 'React', 'Node.js', 'MongoDB', 'TypeScript', 'Python','Assembly','C++'];
+const technologies = ['All', 'React JS', 'React Native', 'Node.js', 'MongoDB', 'TypeScript', 'Firebase', 'Python','C++','Assembly'];
 
 const Projects = () => {
   const [selectedTech, setSelectedTech] = useState('All');
@@ -103,7 +111,7 @@ const Projects = () => {
                       <Typography gutterBottom variant="h5" component="h2">
                         {project.title}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, color: '#CED4F3'}}>
                         {project.description}
                       </Typography>
                       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
@@ -143,7 +151,7 @@ const Projects = () => {
                           fontWeight: 500,
                         }}
                       >
-                        Live Demo
+                        Blog/Demo
                       </Button>
                     </CardActions>
                   </ProjectCard>
