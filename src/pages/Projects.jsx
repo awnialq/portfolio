@@ -26,17 +26,17 @@ const ProjectCard = styled(Card)(({ theme }) => ({
 const projects = [
   {
     id: 1,
-    title: 'Project 1',
-    description: 'A brief description of project 1 and its key features.',
+    title: 'NES Emulator',
+    description: 'My first attempt at creating an emulator of a console.',
     image: '/project1.jpg',
-    technologies: ['React', 'Node.js', 'MongoDB'],
-    link: 'https://github.com/yourusername/project1',
-    demo: 'https://project1-demo.com',
+    technologies: ['C++', 'Assembly'],
+    link: 'https://github.com/awnialq/NES-Emulator',
+    demo: 'NESemu',
   },
   // Add more projects here
 ];
 
-const technologies = ['All', 'React', 'Node.js', 'MongoDB', 'TypeScript', 'Python'];
+const technologies = ['All', 'React', 'Node.js', 'MongoDB', 'TypeScript', 'Python','Assembly','C++'];
 
 const Projects = () => {
   const [selectedTech, setSelectedTech] = useState('All');
