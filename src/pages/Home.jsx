@@ -151,7 +151,7 @@ const Home = () => {
                 }}
               >
                 I'm an aspiring software engineer with a passion for embedded applications and systems engineering. I love exploring how computers work from a fundamental level
-                and how to use the granular tools provided to build larger and larger applications
+                and how to use the granular tools provided to build larger and larger applications.
               </Typography>
               <Typography 
                 variant="body1" 
