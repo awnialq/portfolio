@@ -36,15 +36,15 @@ const projects = [
   {
     id: 2,
     title: 'MealSense',
-    description: 'A meal automation service for college students',
-    image: '/src/assets/nesemu.jpg',
-    technologies: ['React Native', 'TypeScript','Firebase','Python'],
-    link: 'https://github.com/awnialq/NES-Emulator',
-    demo: 'NESemu',
+    description: 'A meal automation service for college students. Worked on Frontend.',
+    image: '/src/assets/mealSense.jpg',
+    technologies: ['React Native', 'FastAPI', 'TypeScript','Firebase','Python'],
+    link: 'https://github.com/Victor-JB/Hack4Hum2025',
+    demo: 'https://devpost.com/software/mealsense-smart-nutrition-for-college-students',
   }
 ];
 
-const technologies = ['All', 'React JS', 'React Native', 'Node.js', 'MongoDB', 'TypeScript', 'Firebase', 'Python','C++','Assembly'];
+const technologies = ['All', 'React JS', 'React Native', 'FastAPI', 'TypeScript', 'Firebase', 'Python','C++','Assembly'];
 
 const Projects = () => {
   const [selectedTech, setSelectedTech] = useState('All');
