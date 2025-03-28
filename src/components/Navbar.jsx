@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, Container, Toolbar, Box, Button } from '@mui/material';
 
 const Navbar = () => {
-  const pages = ['Home', 'About', 'Projects', 'Skills', 'Contact'];
+  const pages = ['Home', 'About', 'Projects', 'Contact'];
 
   const handleCloseNavMenu = () => {
     // Handle menu close
