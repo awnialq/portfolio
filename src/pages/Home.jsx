@@ -66,7 +66,7 @@ const Home = () => {
                   lineHeight: 1.8,
                 }}
               >
-                I enjoy building low-level software and systems in assembly language and C/C++.
+                Studying Computer Science and Engineering @ Santa Clara University
               </Typography>
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button
@@ -123,7 +123,7 @@ const Home = () => {
       </HeroSection>
 
       <Box sx={{ py: 8 }}>
-        <Grid container spacing={4} alignItems="center">
+        <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} md={6}>
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -150,8 +150,8 @@ const Home = () => {
                   lineHeight: 1.8,
                 }}
               >
-                I'm a passionate software developer with expertise in building modern web applications.
-                My journey in software development started [Your Story Here].
+                I'm an aspiring software engineer with a passion for embedded applications and systems engineering. I love exploring how computers work from a fundamental level
+                and how to use the granular tools provided to build larger and larger applications
               </Typography>
               <Typography 
                 variant="body1" 
@@ -161,8 +161,7 @@ const Home = () => {
                   lineHeight: 1.8,
                 }}
               >
-                I specialize in React, Node.js, and modern web technologies. I love creating
-                beautiful, responsive, and user-friendly applications that solve real-world problems.
+                My skills are mainly in C/C++ development, arm32 Assembly, Java, and some frontend development.
               </Typography>
             </motion.div>
           </Grid>
