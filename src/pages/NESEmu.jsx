@@ -1,46 +1,142 @@
 import React from 'react';
-//import '../styles/NESEmu.css';
+import { Box, Typography, Grid, Paper } from '@mui/material';
+import { motion } from 'framer-motion';
+import { styled } from '@mui/material/styles';
+
+const ContentCard = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(3),
+  background: 'rgba(255, 255, 255, 0.05)',
+  backdropFilter: 'blur(10px)',
+  border: '1px solid rgba(255, 255, 255, 0.1)',
+  height: '100%',
+  '& .MuiTypography-root': {
+    fontFamily: 'Inter, sans-serif',
+  },
+}));
 
 const NESEmu = () => {
     return (
-        <div className="nes-emu-container">
-            <header className="blog-header">
-                <h1>NES Emulator Project</h1>
-                <p className="subtitle">A Journey into Console Emulation</p>
-            </header>
+        <Box sx={{ py: 4 }}>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <Typography 
+                    variant="h2" 
+                    sx={{ 
+                        mb: 4,
+                        fontFamily: 'Poppins, sans-serif',
+                        fontWeight: 600,
+                    }}
+                >
+                    NES Emulator Project
+                </Typography>
+                <Typography 
+                    variant="h4" 
+                    sx={{ 
+                        mb: 6,
+                        color: '#64ffda',
+                        fontFamily: 'Poppins, sans-serif',
+                        fontWeight: 500,
+                    }}
+                >
+                    A Journey into Console Emulation
+                </Typography>
 
-            <main className="blog-content">
-                <article className="blog-post">
-                    <h2>Project Overview</h2>
-                    <p>
-                        Welcome to my NES emulator development blog! Here I'll document my
-                        progress in building a Nintendo Entertainment System emulator from
-                        scratch.
-                    </p>
-                </article>
+                <Grid container spacing={4}>
+                    <Grid item xs={12} md={6}>
+                        <ContentCard>
+                            <Typography 
+                                variant="h4" 
+                                sx={{ 
+                                    mb: 3,
+                                    color: '#64ffda',
+                                    fontFamily: 'Poppins, sans-serif',
+                                    fontWeight: 600,
+                                }}
+                            >
+                                Current Progress
+                            </Typography>
+                            <Box component="ul" sx={{ 
+                                listStyle: 'none',
+                                p: 0,
+                                '& li': {
+                                    mb: 2,
+                                    color: '#8892b0',
+                                    fontSize: '1.1rem',
+                                    lineHeight: 1.8,
+                                }
+                            }}>
+                                <li>CPU Implementation - In Progress</li>
+                                <li>Cartridge Loading - In Progress</li>
+                                <li>Graphics Processing - Not Started</li>
+                                <li>Audio Processing - Not Started</li>
+                                <li>Input Handling - Not Started</li>
+                            </Box>
+                        </ContentCard>
+                    </Grid>
 
-                <article className="blog-post">
-                    <h2>Current Progress</h2>
-                    <ul>
-                        <li>CPU Implementation - In Progress</li>
-                        <li>Memory Management - Planning</li>
-                        <li>Graphics Processing - Not Started</li>
-                    </ul>
-                </article>
+                    <Grid item xs={12} md={6}>
+                        <ContentCard>
+                            <Typography 
+                                variant="h4" 
+                                sx={{ 
+                                    mb: 3,
+                                    color: '#64ffda',
+                                    fontFamily: 'Poppins, sans-serif',
+                                    fontWeight: 600,
+                                }}
+                            >
+                                Technical Stack
+                            </Typography>
+                            <Box component="ul" sx={{ 
+                                listStyle: 'none',
+                                p: 0,
+                                '& li': {
+                                    mb: 2,
+                                    color: '#8892b0',
+                                    fontSize: '1.1rem',
+                                    lineHeight: 1.8,
+                                }
+                            }}>
+                                <li>C++</li>
+                                <li>SDL2(?)</li>
+                                <li>Web App(?)</li>
+                            </Box>
+                        </ContentCard>
+                    </Grid>
 
-                <section className="technical-details">
-                    <h2>Technical Stack</h2>
-                    <p>
-                        This project is being built using:
-                    </p>
-                    <ul>
-                        <li>JavaScript/React for the frontend</li>
-                        <li>WebAssembly for performance-critical components</li>
-                        <li>HTML5 Canvas for rendering</li>
-                    </ul>
-                </section>
-            </main>
-        </div>
+                    <Grid item xs={12}>
+                        <ContentCard>
+                            <Typography 
+                                variant="h4" 
+                                sx={{ 
+                                    mb: 3,
+                                    color: '#64ffda',
+                                    fontFamily: 'Poppins, sans-serif',
+                                    fontWeight: 600,
+                                }}
+                            >
+                                Project Overview
+                            </Typography>
+                            <Typography 
+                                variant="body1" 
+                                sx={{ 
+                                    color: '#8892b0',
+                                    fontSize: '1.1rem',
+                                    lineHeight: 1.8,
+                                }}
+                            >
+                                Welcome to my NES emulator development blog! Here I'll document my
+                                progress in building a Nintendo Entertainment System emulator from
+                                scratch.
+                            </Typography>
+                        </ContentCard>
+                    </Grid>
+                </Grid>
+            </motion.div>
+        </Box>
     );
 };
 
