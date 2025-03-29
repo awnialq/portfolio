@@ -16,7 +16,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/NESemu" element={<NESEmu/>} />
+        <Route path="/NESemu" element={<NESEmu />} />
       </Routes>
     </AnimatePresence>
   );
