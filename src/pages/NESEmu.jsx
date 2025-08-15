@@ -100,8 +100,8 @@ const NESEmu = () => {
                                     lineHeight: 1.8,
                                 }
                             }}>
-                                <li>C++</li>
-                                <li>SDL3</li>
+                                <li>C++ - Backend</li>
+                                <li>SDL3 - Frontend</li>
                             </Box>
                         </ContentCard>
                     </Grid>
@@ -117,7 +117,7 @@ const NESEmu = () => {
                                     fontWeight: 600,
                                 }}
                             >
-                                Project Overview
+                                Implementation Details
                             </Typography>
                             <Typography 
                                 variant="body1" 
@@ -127,40 +127,59 @@ const NESEmu = () => {
                                     lineHeight: 1.8,
                                 }}
                             >
-                                Welcome to my NES emulator development blog! Here I'll document my
-                                progress in building a Nintendo Entertainment System emulator from
-                                scratch.
+                                <strong>CPU Core:</strong> <br />
+                                I started by implementing the 6502 CPU core, focusing on opcode decoding and execution. The lookup table approach helped organize the instruction set, allowing each opcode to map to its handler and addressing mode. I paid special attention to the various addressing modes, which required careful bit manipulation and memory access logic.<br /><br />
 
-                                <br />
-                                <br />
+                                <strong>Cartridge Loading:</strong> <br />
+                                For cartridge loading, I parse the iNES file format to extract ROM data and mapper information. This step involved reading headers and allocating memory for PRG and CHR ROMs, ensuring compatibility with common mappers.<br /><br />
 
-                                Reflecting on developing the CPU (08/14/2025):
-                                <br />
-                                <br />
-                                  You know, when I first began developing this project, I didn't expect it to be that bad.
-                                  But I was very wrong in my estimation of how long it would take. Even though I used One Lone Coder's project
-                                  as a starting tempelate, I didn't really follow through with his exact design philosophy, but rememnants of his implementation 
-                                  such as the lookup table carried forward in my implementation of the NES. 
-                                <br />
-                                <br />
-                                  The main concept I sturggled to properly understand until later on was the addressing modes as a whole. There wasn't any documentation
-                                  I could find online, so I had to spend a lot of time going to many different sources to properly understand how it functions.
-                                <br />
-                                <br />
-                                  Other than that, testing the cpu using NES test was pretty fun as it was like solving a puzzle. At first, you only progress a couple instructions
-                                  and then get stopped, but as you figure out more and more bugs in your code, it all slots into place.
-                                <br />
-                                <br />
-                                  When it comes to illegal opcodes, I did initially go thru and fix the addressing modes which were causing the issues but gave up as my structure
-                                  is good enough to continue working on the emulator now. My next steps are working on the PPU, which will probably take a while as I have minimal
-                                  understanding on how it works at the moment.
+                                <strong>Graphics (PPU):</strong> <br />
+                                The Picture Processing Unit (PPU) implementation is ongoing. I began by setting up memory-mapped registers and basic rendering loops. The challenge here is synchronizing CPU and PPU cycles and handling sprite/background rendering.<br /><br />
+
+                                <strong>Testing:</strong> <br />
+                                I used NES test ROMs to validate my CPU implementation. Debugging involved stepping through instructions and comparing emulator output with expected results, which helped uncover subtle bugs in flag handling and memory access.<br /><br />
+
+                                <strong>Design Choices:</strong> <br />
+                                My code structure aims for modularity, separating CPU, PPU, and cartridge logic into distinct classes. This makes it easier to test and extend each component independently.<br /><br />
+
+                                Overall, building the emulator has been a rewarding challenge, requiring a blend of reverse engineering, low-level programming, and creative problem-solving.
                             </Typography>
                         </ContentCard>
                     </Grid>
+
+                    <Grid item xs={12}>
+    <ContentCard>
+        <Typography 
+            variant="h4" 
+            sx={{ 
+                mb: 3,
+                color: '#64ffda',
+                fontFamily: 'Poppins, sans-serif',
+                fontWeight: 600,
+            }}
+        >
+            Reflections on Development
+        </Typography>
+        <Typography 
+            variant="body1" 
+            sx={{ 
+                color: '#8892b0',
+                fontSize: '1.1rem',
+                lineHeight: 1.8,
+            }}
+        >
+            The CPU - (08/14/2025) <br /><br />
+            You know, when I first began developing this project, I didn't expect it to be that bad. But I was very wrong in my estimation of how long it would take. Even though I used One Lone Coder's project as a starting tempelate, I didn't really follow through with his exact design philosophy, but rememnants of his implementation such as the lookup table carried forward in my implementation of the NES.
+            The main concept I sturggled to properly understand until later on was the addressing modes as a whole. There wasn't any documentation I could find online, so I had to spend a lot of time going to many different sources to properly understand how it functions.
+            Other than that, testing the cpu using NES test was pretty fun as it was like solving a puzzle. At first, you only progress a couple instructions and then get stopped, but as you figure out more and more bugs in your code, it all slots into place.
+            When it comes to illegal opcodes, I did initially go thru and fix the addressing modes which were causing the issues but gave up as my structure is good enough to continue working on the emulator now. My next steps are working on the PPU, which will probably take a while as I have minimal understanding on how it works at the moment.
+        </Typography>
+    </ContentCard>
+</Grid>
                 </Grid>
             </motion.div>
         </Box>
     );
 };
 
-export default NESEmu; 
+export default NESEmu;
