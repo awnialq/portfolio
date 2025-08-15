@@ -68,9 +68,9 @@ const NESEmu = () => {
                                     lineHeight: 1.8,
                                 }
                             }}>
-                                <li>CPU Implementation - In Progress</li>
-                                <li>Cartridge Loading - In Progress</li>
-                                <li>Graphics Processing - Not Started</li>
+                                <li>CPU Implementation - Complete (Illegal Opcodes not fully implemented)</li>
+                                <li>Cartridge Loading - Complete (Mostly)</li>
+                                <li>Graphics Processing - Currently in Progress</li>
                                 <li>Audio Processing - Not Started</li>
                                 <li>Input Handling - Not Started</li>
                             </Box>
@@ -101,8 +101,8 @@ const NESEmu = () => {
                                 }
                             }}>
                                 <li>C++</li>
-                                <li>SDL2(?)</li>
-                                <li>Web App(?)</li>
+                                <li>SDL3</li>
+                                <li>Web App(?) using Webassm</li>
                             </Box>
                         </ContentCard>
                     </Grid>
