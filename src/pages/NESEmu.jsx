@@ -136,16 +136,20 @@ const NESEmu = () => {
 
                                 Reflecting on developing the CPU (08/14/2025):
                                 <br />
+                                <br />
                                   You know, when I first began developing this project, I didn't expect it to be that bad.
                                   But I was very wrong in my estimation of how long it would take. Even though I used One Lone Coder's project
                                   as a starting tempelate, I didn't really follow through with his exact design philosophy, but rememnants of his implementation 
                                   such as the lookup table carried forward in my implementation of the NES. 
                                 <br />
+                                <br />
                                   The main concept I sturggled to properly understand until later on was the addressing modes as a whole. There wasn't any documentation
                                   I could find online, so I had to spend a lot of time going to many different sources to properly understand how it functions.
                                 <br />
+                                <br />
                                   Other than that, testing the cpu using NES test was pretty fun as it was like solving a puzzle. At first, you only progress a couple instructions
                                   and then get stopped, but as you figure out more and more bugs in your code, it all slots into place.
+                                <br />
                                 <br />
                                   When it comes to illegal opcodes, I did initially go thru and fix the addressing modes which were causing the issues but gave up as my structure
                                   is good enough to continue working on the emulator now. My next steps are working on the PPU, which will probably take a while as I have minimal
