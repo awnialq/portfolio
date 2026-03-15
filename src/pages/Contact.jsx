@@ -5,29 +5,25 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Section from '../components/ui/Section';
+
+const MotionDiv = motion.div;
 
 const ContactCard = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   paddingTop: theme.spacing(2),
-  background: 'rgba(255, 255, 255, 0.05)',
-  backdropFilter: 'blur(10px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
+  background: 'linear-gradient(160deg, rgba(12, 18, 34, 0.86), rgba(8, 12, 24, 0.9))',
+  border: '1px solid rgba(74, 199, 255, 0.2)',
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
-  transition: 'transform 0.3s ease-in-out',
+  transition: 'transform 0.3s ease-in-out, border-color 0.3s ease-in-out',
   '&:hover': {
     transform: 'translateY(-5px)',
+    borderColor: 'rgba(81, 255, 138, 0.42)',
   },
-  '& .MuiTypography-root': {
-    fontFamily: 'Inter, sans-serif',
-  },
-  '& .MuiTypography-h4': {
-    fontFamily: 'Poppins, sans-serif',
-    fontWeight: 600,
-  }
 }));
 
 const socialLinks = [
@@ -48,29 +44,21 @@ const contactInfo = [
 
 const Contact = () => {
   return (
-    <Box sx={{ py: 4 }}>
+    <Section
+      eyebrow="Reach Out"
+      title="Get In Touch"
+      subtitle="Open to internship opportunities, collaboration, or technical chats around systems and software engineering."
+    >
       <Container maxWidth="lg">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Typography 
-            variant="h2" 
-            sx={{ 
-              mb: 6,
-              fontFamily: 'Poppins, sans-serif',
-              fontWeight: 600,
-            }}
-          >
-            Get In Touch
-          </Typography>
-
-
           <Grid container spacing={4} justifyContent="center">
             {socialLinks.map((link, index) => (
               <Grid item xs={12} sm={6} md={3} key={link.name}>
-                <motion.div
+                <MotionDiv
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -80,59 +68,36 @@ const Contact = () => {
                       href={link.url}
                       target="_blank"
                       sx={{
-                        color: '#64ffda',
+                        color: 'primary.main',
                         fontSize: '2.5rem',
                         mb: 0.5,
                         '&:hover': {
-                          color: '#00bcd4',
+                          color: 'secondary.main',
                         },
                       }}
                     >
                       {link.icon}
                     </IconButton>
-                    <Typography 
-                      variant="h4" 
-                      sx={{ 
-                        mb: 1, 
-                        color: '#64ffda',
-                        fontFamily: 'Poppins, sans-serif',
-                        fontWeight: 600,
-                      }}
-                    >
+                    <Typography variant="h3" sx={{ mb: 1, color: 'primary.main' }}>
                       {link.name}
                     </Typography>
-                    <Typography 
-                      variant="body2" 
-                      sx={{ 
-                        color: '#8892b0',
-                        fontFamily: 'Inter, sans-serif',
-                        fontWeight: 400,
-                      }}
-                    >
+                    <Typography variant="body2" color="text.secondary">
                       {link.url}
                     </Typography>
                   </ContactCard>
-                </motion.div>
+                </MotionDiv>
               </Grid>
             ))}
           </Grid>
 
           <Box sx={{ mt: 6 }}>
-            <Typography 
-              variant="h4" 
-              sx={{ 
-                mb: 3, 
-                color: '#64ffda',
-                fontFamily: 'Poppins, sans-serif',
-                fontWeight: 600,
-              }}
-            >
+            <Typography variant="h3" sx={{ mb: 3, color: 'secondary.main' }}>
               Direct Contact
             </Typography>
             <Grid container spacing={4} justifyContent="center">
               {contactInfo.map((info, index) => (
                 <Grid item xs={12} sm={6} key={index}>
-                  <motion.div
+                  <MotionDiv
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -145,9 +110,7 @@ const Contact = () => {
                         <Typography 
                           variant="body1"
                           sx={{ 
-                            color: '#8892b0',
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 400,
+                            color: 'text.secondary',
                             fontSize: '1.1rem',
                             lineHeight: 1.8,
                           }}
@@ -156,14 +119,14 @@ const Contact = () => {
                         </Typography>
                       </Box>
                     </ContactCard>
-                  </motion.div>
+                  </MotionDiv>
                 </Grid>
               ))}
             </Grid>
           </Box>
-        </motion.div>
+        </MotionDiv>
       </Container>
-    </Box>
+    </Section>
   );
 };
 

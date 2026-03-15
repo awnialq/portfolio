@@ -3,8 +3,8 @@ import { AnimatePresence } from 'framer-motion';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
-import Skills from './pages/Skills';
 import Contact from './pages/Contact';
+import Skills from './pages/Skills';
 import NESEmu from './pages/NESEmu';
 
 function AnimatedRoutes() {
@@ -15,8 +15,9 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/NESemu" element={<NESEmu />} />
+        <Route path="/nesemu" element={<NESEmu />} />
       </Routes>
     </AnimatePresence>
   );

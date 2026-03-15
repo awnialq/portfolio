@@ -1,150 +1,130 @@
 import { Box, Typography, Grid, Paper, LinearProgress } from '@mui/material';
 import { motion } from 'framer-motion';
 import { styled } from '@mui/material/styles';
+import Section from '../components/ui/Section';
+
+const PROFICIENCY_STEPS = ['Beginner', 'Novice', 'Intermediate', 'Proficient', 'Advanced'];
+const MAX_LEVEL = PROFICIENCY_STEPS.length;
+
+const getLevelPercent = (level) => ((level - 1) / (MAX_LEVEL - 1)) * 100;
+
+const getLevelLabel = (level) => PROFICIENCY_STEPS[level - 1] ?? 'Beginner';
 
 const SkillCard = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
-  background: 'rgba(255, 255, 255, 0.05)',
-  backdropFilter: 'blur(10px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
+  background: 'linear-gradient(160deg, rgba(12, 18, 34, 0.86), rgba(8, 12, 24, 0.9))',
+  border: '1px solid rgba(74, 199, 255, 0.2)',
   height: '100%',
-  '& .MuiTypography-root': {
-    fontFamily: 'Inter, sans-serif',
-  },
-  '& .MuiTypography-h4': {
-    fontFamily: 'Poppins, sans-serif',
-    fontWeight: 600,
+  transition: 'border-color 0.25s ease, transform 0.25s ease',
+  '&:hover': {
+    transform: 'translateY(-4px)',
+    borderColor: 'rgba(81, 255, 138, 0.42)',
   }
 }));
 
 const skills = [
   {
-    category: 'Frontend',
+    category: 'Low-Level & Systems',
     items: [
-      { name: 'React', level: 90 },
-      { name: 'JavaScript', level: 85 },
-      { name: 'HTML/CSS', level: 95 },
-      { name: 'TypeScript', level: 80 },
+      { name: 'Computer Architecture Concepts', level: 4 },
+      { name: 'ARM32 Assembly', level: 4 },
+      { name: 'Memory / Pointer-Oriented Debugging', level: 4 },
+      { name: 'Emulator & Systems-Level Design', level: 4 },
     ],
   },
   {
-    category: 'Backend',
+    category: 'Language Knowledge',
     items: [
-      { name: 'Node.js', level: 85 },
-      { name: 'Python', level: 80 },
-      { name: 'SQL', level: 75 },
-      { name: 'MongoDB', level: 80 },
+      { name: 'C / C++', level: 5 },
+      { name: 'Java', level: 4 },
+      { name: 'Python', level: 4 },
+      { name: 'JavaScript / TypeScript', level: 4 },
     ],
   },
   {
-    category: 'Tools & Others',
+    category: 'Engineering & Tooling',
     items: [
-      { name: 'Git', level: 90 },
-      { name: 'Docker', level: 70 },
-      { name: 'AWS', level: 65 },
-      { name: 'CI/CD', level: 75 },
+      { name: 'Git', level: 5 },
+      { name: 'Docker', level: 3 },
+      { name: 'Linux Development Workflow', level: 4 },
+      { name: 'CI/CD', level: 3 },
     ],
   },
 ];
 
+const MotionDiv = motion.div;
+
 const Skills = () => {
   return (
-    <Box sx={{ py: 4 }}>
-      <motion.div
+    <Section
+      eyebrow="Capabilities"
+      title="Skills & Expertise"
+      subtitle="Core technical strengths focused on low-level systems work, language proficiency, and practical software delivery."
+    >
+      <MotionDiv
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Typography 
-          variant="h2" 
-          sx={{ 
-            mb: 6,
-            fontFamily: 'Poppins, sans-serif',
-            fontWeight: 600,
-          }}
-        >
-          Skills & Expertise
-        </Typography>
-
         <Grid container spacing={4}>
           {skills.map((category, index) => (
             <Grid item xs={12} md={4} key={category.category}>
-              <motion.div
+              <MotionDiv
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
                 <SkillCard>
-                  <Typography 
-                    variant="h4" 
-                    sx={{ 
-                      mb: 3, 
-                      color: '#64ffda',
-                      fontFamily: 'Poppins, sans-serif',
-                      fontWeight: 600,
-                    }}
-                  >
+                  <Typography variant="h3" sx={{ mb: 3, color: 'primary.main' }}>
                     {category.category}
                   </Typography>
                   {category.items.map((skill) => (
                     <Box key={skill.name} sx={{ mb: 2 }}>
                       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                        <Typography 
-                          variant="body1" 
-                          sx={{ 
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 400,
-                          }}
-                        >
+                        <Typography variant="body1">
                           {skill.name}
                         </Typography>
-                        <Typography 
-                          variant="body2" 
-                          sx={{ 
-                            color: 'text.secondary',
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 400,
-                          }}
-                        >
-                          {skill.level}%
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                          {getLevelLabel(skill.level)}
                         </Typography>
                       </Box>
                       <LinearProgress
                         variant="determinate"
-                        value={skill.level}
+                        value={getLevelPercent(skill.level)}
                         sx={{
                           height: 8,
                           borderRadius: 4,
-                          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                          backgroundColor: 'rgba(74, 199, 255, 0.16)',
                           '& .MuiLinearProgress-bar': {
-                            background: 'linear-gradient(45deg, #64ffda 30%, #00bcd4 90%)',
+                            background:
+                              'linear-gradient(120deg, rgba(81, 255, 138, 0.95), rgba(74, 199, 255, 0.95))',
                           },
                         }}
                       />
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 0.8 }}>
+                        <Typography variant="caption" color="text.secondary">
+                          Beginner
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          Advanced
+                        </Typography>
+                      </Box>
                     </Box>
                   ))}
                 </SkillCard>
-              </motion.div>
+              </MotionDiv>
             </Grid>
           ))}
         </Grid>
 
         <Box sx={{ mt: 6 }}>
-          <Typography 
-            variant="h4" 
-            sx={{ 
-              mb: 3, 
-              color: '#64ffda',
-              fontFamily: 'Poppins, sans-serif',
-              fontWeight: 600,
-            }}
-          >
+          <Typography variant="h3" sx={{ mb: 3, color: 'secondary.main' }}>
             Additional Skills
           </Typography>
           <Grid container spacing={2}>
-            {['Problem Solving', 'Team Collaboration', 'Agile Methodologies', 'Technical Writing'].map((skill) => (
+            {['Problem Solving', 'Team Collaboration', 'Agile Methodologies', 'Technical Writing', 'Performance Optimization', 'Low-Level Debugging'].map((skill) => (
               <Grid item xs={6} sm={3} key={skill}>
-                <motion.div
+                <MotionDiv
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -152,25 +132,21 @@ const Skills = () => {
                     sx={{
                       p: 2,
                       textAlign: 'center',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      background: 'rgba(8, 12, 24, 0.8)',
+                      border: '1px solid rgba(74, 199, 255, 0.2)',
                       cursor: 'pointer',
-                      '& .MuiTypography-root': {
-                        fontFamily: 'Inter, sans-serif',
-                        fontWeight: 500,
-                      }
+                      '& .MuiTypography-root': { fontWeight: 500 },
                     }}
                   >
                     <Typography variant="body1">{skill}</Typography>
                   </Paper>
-                </motion.div>
+                </MotionDiv>
               </Grid>
             ))}
           </Grid>
         </Box>
-      </motion.div>
-    </Box>
+      </MotionDiv>
+    </Section>
   );
 };
 

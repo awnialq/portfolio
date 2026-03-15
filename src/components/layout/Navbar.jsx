@@ -6,24 +6,31 @@ import { AppBar, Toolbar, Button, IconButton, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
-const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  background: 'rgba(255, 255, 255, 0.1)',
-  backdropFilter: 'blur(10px)',
+const MotionDiv = motion.div;
+
+const StyledAppBar = styled(AppBar)(() => ({
+  background: 'rgba(6, 8, 18, 0.82)',
+  backdropFilter: 'blur(14px)',
   boxShadow: 'none',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  borderBottom: '1px solid rgba(74, 199, 255, 0.2)',
 }));
 
-const NavButton = styled(Button)(({ theme }) => ({
-  color: '#fff',
-  margin: '0 8px',
+const NavButton = styled(Button)(() => ({
+  color: 'rgb(231, 248, 238)',
+  margin: '0 0.35rem',
+  fontWeight: 600,
+  border: '1px solid transparent',
   '&:hover': {
-    background: 'rgba(255, 255, 255, 0.1)',
+    borderColor: 'rgba(74, 199, 255, 0.3)',
+    background: 'rgba(74, 199, 255, 0.12)',
   },
 }));
 
 const navItems = [
   { name: 'Home', path: '/' },
   { name: 'Projects', path: '/projects' },
+  { name: 'Skills', path: '/skills' },
+  { name: 'NES Blog', path: '/nesemu' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -37,25 +44,33 @@ const Navbar = () => {
 
   return (
     <StyledAppBar position="fixed">
-      <Toolbar>
-        <motion.div
+      <Toolbar sx={{ minHeight: { xs: 64, md: 72 } }}>
+        <MotionDiv
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
           <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-            <Box component="span" sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-              Awni AlQuraini
+            <Box
+              component="span"
+              sx={{
+                fontSize: { xs: '0.95rem', md: '1rem' },
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                color: 'primary.main',
+              }}
+            >
+              AWNI.ALQ // PORTFOLIO
             </Box>
           </Link>
-        </motion.div>
+        </MotionDiv>
 
         <Box sx={{ flexGrow: 1 }} />
 
         {/* Desktop Navigation */}
         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
           {navItems.map((item) => (
-            <motion.div
+            <MotionDiv
               key={item.name}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -63,13 +78,17 @@ const Navbar = () => {
               <Link to={item.path} style={{ textDecoration: 'none' }}>
                 <NavButton
                   sx={{
-                    color: location.pathname === item.path ? '#64ffda' : '#fff',
+                    color: location.pathname === item.path ? 'primary.main' : 'text.primary',
+                    backgroundColor:
+                      location.pathname === item.path ? 'rgba(81, 255, 138, 0.12)' : 'transparent',
+                    borderColor:
+                      location.pathname === item.path ? 'rgba(81, 255, 138, 0.35)' : 'transparent',
                   }}
                 >
                   {item.name}
                 </NavButton>
               </Link>
-            </motion.div>
+            </MotionDiv>
           ))}
         </Box>
 
@@ -87,7 +106,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       {mobileOpen && (
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -96,8 +115,9 @@ const Navbar = () => {
             top: '64px',
             left: 0,
             right: 0,
-            background: 'rgba(18, 18, 18, 0.95)',
-            backdropFilter: 'blur(10px)',
+            background: 'rgba(8, 12, 24, 0.96)',
+            backdropFilter: 'blur(14px)',
+            borderBottom: '1px solid rgba(74, 199, 255, 0.22)',
             padding: '1rem',
             display: 'flex',
             flexDirection: 'column',
@@ -114,14 +134,15 @@ const Navbar = () => {
               <NavButton
                 fullWidth
                 sx={{
-                  color: location.pathname === item.path ? '#64ffda' : '#fff',
+                  color: location.pathname === item.path ? 'primary.main' : 'text.primary',
+                  justifyContent: 'flex-start',
                 }}
               >
                 {item.name}
               </NavButton>
             </Link>
           ))}
-        </motion.div>
+        </MotionDiv>
       )}
     </StyledAppBar>
   );
