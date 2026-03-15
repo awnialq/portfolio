@@ -24,30 +24,22 @@ const SkillCard = styled(Paper)(({ theme }) => ({
 
 const skills = [
   {
-    category: 'Low-Level & Systems',
-    items: [
-      { name: 'Computer Architecture Concepts', level: 4 },
-      { name: 'ARM32 Assembly', level: 4 },
-      { name: 'Memory / Pointer-Oriented Debugging', level: 4 },
-      { name: 'Emulator & Systems-Level Design', level: 4 },
-    ],
-  },
-  {
     category: 'Language Knowledge',
     items: [
       { name: 'C / C++', level: 5 },
       { name: 'Java', level: 4 },
-      { name: 'Python', level: 4 },
-      { name: 'JavaScript / TypeScript', level: 4 },
+      { name: 'Python', level: 3 }, 
+      { name: 'ARM32 Assembly', level: 3},
+      { name: 'JavaScript / TypeScript', level: 2 },
     ],
   },
   {
     category: 'Engineering & Tooling',
     items: [
       { name: 'Git', level: 5 },
-      { name: 'Docker', level: 3 },
       { name: 'Linux Development Workflow', level: 4 },
-      { name: 'CI/CD', level: 3 },
+      { name: 'Ghidra (Reverse Engineering)', level: 3 },
+      { name: 'MatLAB', level: 3}
     ],
   },
 ];
