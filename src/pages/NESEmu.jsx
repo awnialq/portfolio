@@ -8,11 +8,6 @@ const MotionDiv = motion.div;
 
 const NESEmu = () => {
   return (
-    <Section
-      eyebrow="Blog"
-      title="Engineering Log"
-      subtitle="Structured notes that are now data-driven, so adding future entries only requires editing a content file."
-    >
       <MotionDiv
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -27,7 +22,6 @@ const NESEmu = () => {
           />
         </Box>
       </MotionDiv>
-    </Section>
   );
 };
 
