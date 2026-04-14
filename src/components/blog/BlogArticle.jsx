@@ -1,5 +1,28 @@
 import { Box, Paper, Stack, Typography } from '@mui/material';
 
+const renderBullet = (point) => {
+  if (typeof point === 'object' && point?.href) {
+    return (
+      <Typography
+        component="a"
+        href={point.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="body1"
+        sx={{
+          color: 'secondary.main',
+          textDecoration: 'underline',
+          '&:hover': { color: 'primary.main' },
+        }}
+      >
+        {point.label ?? point.href}
+      </Typography>
+    );
+  }
+
+  return point;
+};
+
 const BlogSection = ({ section }) => {
   return (
     <Paper
@@ -23,13 +46,13 @@ const BlogSection = ({ section }) => {
         <Box component="ul" sx={{ pl: 3, m: 0 }}>
           {section.bullets.map((point) => (
             <Typography
-              key={point.slice(0, 18)}
+              key={typeof point === 'string' ? point.slice(0, 18) : point.href}
               component="li"
               variant="body1"
               color="text.secondary"
               sx={{ mb: 1.25 }}
             >
-              {point}
+              {renderBullet(point)}
             </Typography>
           ))}
         </Box>

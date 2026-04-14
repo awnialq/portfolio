@@ -108,7 +108,7 @@ const Home = () => {
               </Typography>
 
               <Typography variant="body1" color="text.secondary">
-                My skills are mainly in C/C++ development, arm32 Assembly, Java, and some frontend development.
+                My skills are mainly in C/C++ development, ARM32/64 Assembly, Java, and some frontend development.
               </Typography>
             </MotionDiv>
           </Grid>

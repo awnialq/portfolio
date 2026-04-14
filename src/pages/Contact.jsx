@@ -63,10 +63,15 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
-                  <ContactCard>
+                  <ContactCard
+                    component="a"
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ textDecoration: 'none', cursor: 'pointer' }}
+                  >
                     <IconButton
-                      href={link.url}
-                      target="_blank"
+                      component="span"
                       sx={{
                         color: 'primary.main',
                         fontSize: '2.5rem',

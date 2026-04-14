@@ -41,7 +41,7 @@ const projects = [
     image: `${base}mealSense.jpg`,
     technologies: ['React Native', 'FastAPI', 'TypeScript','Firebase','Python'],
     link: 'https://github.com/Victor-JB/Hack4Hum2025',
-    demo: 'https://devpost.com/software/mealsense-smart-nutrition-for-college-students',
+    demo: './#/mealsense',
   },
   {
     id: 3,

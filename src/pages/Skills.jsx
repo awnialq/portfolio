@@ -28,9 +28,9 @@ const skills = [
     items: [
       { name: 'C / C++', level: 5 },
       { name: 'Java', level: 4 },
-      { name: 'Python', level: 3 }, 
-      { name: 'ARM32 Assembly', level: 3},
-      { name: 'JavaScript / TypeScript', level: 2 },
+      { name: 'Python', level: 4 }, 
+      { name: 'ARM32 Assembly', level: 4},
+      { name: 'JavaScript / TypeScript', level: 3 },
     ],
   },
   {
@@ -40,7 +40,7 @@ const skills = [
       { name: 'Linux Development Workflow', level: 4 },
       { name: 'Ghidra (Reverse Engineering)', level: 3 },
       { name: 'MatLAB', level: 3 },
-      { name: 'llama.cpp', level: 2 },
+      { name: 'llama.cpp', level: 3 },
     ],
   },
 ];
@@ -48,6 +48,11 @@ const skills = [
 const MotionDiv = motion.div;
 
 const Skills = () => {
+  const sortedSkills = skills.map((category) => ({
+    ...category,
+    items: [...category.items].sort((a, b) => b.level - a.level),
+  }));
+
   return (
     <Section
       eyebrow="Capabilities"
@@ -60,7 +65,7 @@ const Skills = () => {
         transition={{ duration: 0.5 }}
       >
         <Grid container spacing={4}>
-          {skills.map((category, index) => (
+          {sortedSkills.map((category, index) => (
             <Grid item xs={12} md={4} key={category.category}>
               <MotionDiv
                 initial={{ opacity: 0, y: 20 }}
