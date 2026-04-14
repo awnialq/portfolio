@@ -5,7 +5,9 @@ import { styled } from '@mui/material/styles';
 import Section from '../components/ui/Section';
 
 const ProjectCard = styled(Card)(() => ({
-  height: '100%',
+  width: '100%',
+  minHeight: 0,
+  flex: 1,
   display: 'flex',
   flexDirection: 'column',
   background: 'linear-gradient(155deg, rgba(12, 18, 34, 0.86), rgba(8, 12, 24, 0.9))',
@@ -40,10 +42,31 @@ const projects = [
     technologies: ['React Native', 'FastAPI', 'TypeScript','Firebase','Python'],
     link: 'https://github.com/Victor-JB/Hack4Hum2025',
     demo: 'https://devpost.com/software/mealsense-smart-nutrition-for-college-students',
-  }
+  },
+  {
+    id: 3,
+    title: 'Portfolio Website',
+    description: 'This site: projects, skills, and dev logs—React, MUI, and GitHub Pages.',
+    image: `${base}portfolio-site.jpg`,
+    technologies: ['React JS', 'Vite', 'Material UI'],
+    link: 'https://github.com/awnialq/portfolio',
+    demo: './#/portfolio-site',
+  },
 ];
 
-const technologies = ['All', 'React JS', 'React Native', 'FastAPI', 'TypeScript', 'Firebase', 'Python','C++','Assembly'];
+const technologies = [
+  'All',
+  'React JS',
+  'React Native',
+  'FastAPI',
+  'TypeScript',
+  'Firebase',
+  'Python',
+  'C++',
+  'Assembly',
+  'Vite',
+  'Material UI',
+];
 
 const Projects = () => {
   const [selectedTech, setSelectedTech] = useState('All');
@@ -88,29 +111,68 @@ const Projects = () => {
         <Grid container spacing={4}>
           <AnimatePresence>
             {filteredProjects.map((project) => (
-              <Grid item xs={12} sm={6} md={4} key={project.id}>
+              <Grid
+                key={project.id}
+                size={{ xs: 12, sm: 6, md: 4 }}
+                sx={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}
+              >
                 <MotionDiv
                   layout
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.3 }}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: 1,
+                    minWidth: 0,
+                    width: '100%',
+                  }}
                 >
-                  <ProjectCard>
+                  <ProjectCard sx={{ display: 'flex', flexDirection: 'column' }}>
                     <CardMedia
                       component="img"
                       height="200"
                       image={project.image}
                       alt={project.title}
+                      sx={{ height: 200, objectFit: 'cover', flexShrink: 0 }}
                     />
-                    <CardContent sx={{ flexGrow: 1 }}>
+                    <CardContent
+                      sx={{
+                        flexGrow: 1,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        pt: 2,
+                      }}
+                    >
                       <Typography gutterBottom variant="h3" component="h2" sx={{ mb: 1 }}>
                         {project.title}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                          mb: 2,
+                          flexGrow: 1,
+                          display: '-webkit-box',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                          minHeight: '4.6em',
+                        }}
+                      >
                         {project.description}
                       </Typography>
-                      <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          gap: 1,
+                          flexWrap: 'wrap',
+                          minHeight: 64,
+                          alignContent: 'flex-start',
+                        }}
+                      >
                         {project.technologies.map((tech) => (
                           <Chip
                             key={tech}
@@ -125,7 +187,7 @@ const Projects = () => {
                         ))}
                       </Box>
                     </CardContent>
-                    <CardActions>
+                    <CardActions sx={{ flexShrink: 0, mt: 'auto' }}>
                       <Button
                         size="small"
                         href={project.link}

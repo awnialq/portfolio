@@ -6,6 +6,7 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Skills from './pages/Skills';
 import NESEmu from './pages/NESEmu';
+import PortfolioSite from './pages/PortfolioSite';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function AnimatedRoutes() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/nesemu" element={<NESEmu />} />
+        <Route path="/portfolio-site" element={<PortfolioSite />} />
       </Routes>
     </AnimatePresence>
   );

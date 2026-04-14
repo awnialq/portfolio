@@ -39,7 +39,8 @@ const skills = [
       { name: 'Git', level: 5 },
       { name: 'Linux Development Workflow', level: 4 },
       { name: 'Ghidra (Reverse Engineering)', level: 3 },
-      { name: 'MatLAB', level: 3}
+      { name: 'MatLAB', level: 3 },
+      { name: 'llama.cpp', level: 2 },
     ],
   },
 ];
