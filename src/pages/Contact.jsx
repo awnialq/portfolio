@@ -1,11 +1,19 @@
-import { Box, Typography, Grid, IconButton, Paper, Container } from '@mui/material';
+import { Box, Typography, Grid, IconButton, Paper, Container, Button, Stack } from '@mui/material';
 import { motion } from 'framer-motion';
 import { styled } from '@mui/material/styles';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import DownloadIcon from '@mui/icons-material/Download';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import DescriptionIcon from '@mui/icons-material/Description';
 import Section from '../components/ui/Section';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const resumeUrl = `${base}resume.pdf`;
 
 const MotionDiv = motion.div;
 
@@ -128,6 +136,81 @@ const Contact = () => {
                 </Grid>
               ))}
             </Grid>
+          </Box>
+
+          <Box sx={{ mt: 6 }}>
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              justifyContent="space-between"
+              alignItems={{ xs: 'flex-start', sm: 'center' }}
+              spacing={2}
+              sx={{ mb: 3 }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <DescriptionIcon sx={{ color: 'secondary.main', fontSize: '2rem' }} />
+                <Typography variant="h3" sx={{ color: 'secondary.main' }}>
+                  Resume
+                </Typography>
+              </Box>
+              <Stack direction="row" spacing={1.5}>
+                <Button
+                  href={resumeUrl}
+                  download
+                  variant="contained"
+                  startIcon={<DownloadIcon />}
+                  sx={{
+                    color: 'rgb(10, 16, 22)',
+                    background:
+                      'linear-gradient(120deg, rgba(81, 255, 138, 1), rgba(74, 199, 255, 0.92))',
+                    '&:hover': {
+                      background:
+                        'linear-gradient(120deg, rgba(74, 199, 255, 1), rgba(81, 255, 138, 0.95))',
+                    },
+                  }}
+                >
+                  Download
+                </Button>
+                <Button
+                  href={resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outlined"
+                  startIcon={<OpenInNewIcon />}
+                  sx={{
+                    borderColor: 'rgba(74, 199, 255, 0.4)',
+                    color: 'text.primary',
+                    '&:hover': {
+                      borderColor: 'secondary.main',
+                      backgroundColor: 'rgba(74, 199, 255, 0.1)',
+                    },
+                  }}
+                >
+                  Open in new tab
+                </Button>
+              </Stack>
+            </Stack>
+
+            <Paper
+              sx={{
+                p: { xs: 1, md: 1.5 },
+                background: 'linear-gradient(160deg, rgba(12, 18, 34, 0.86), rgba(8, 12, 24, 0.9))',
+                border: '1px solid rgba(74, 199, 255, 0.2)',
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                component="iframe"
+                src={`${resumeUrl}#view=FitH`}
+                title="Awni AlQuraini Resume"
+                sx={{
+                  width: '100%',
+                  height: { xs: 520, sm: 720, md: 900 },
+                  border: 'none',
+                  borderRadius: 1,
+                  backgroundColor: 'rgba(8, 12, 24, 0.9)',
+                }}
+              />
+            </Paper>
           </Box>
         </MotionDiv>
       </Container>

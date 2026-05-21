@@ -8,6 +8,7 @@ import Skills from './pages/Skills';
 import NESEmu from './pages/NESEmu';
 import MealSense from './pages/MealSense';
 import PortfolioSite from './pages/PortfolioSite';
+import Learnimal from './pages/Learnimal';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function AnimatedRoutes() {
         <Route path="/nesemu" element={<NESEmu />} />
         <Route path="/mealsense" element={<MealSense />} />
         <Route path="/portfolio-site" element={<PortfolioSite />} />
+        <Route path="/learnimal" element={<Learnimal />} />
       </Routes>
     </AnimatePresence>
   );

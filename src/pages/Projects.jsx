@@ -52,6 +52,16 @@ const projects = [
     link: 'https://github.com/awnialq/portfolio',
     demo: './#/portfolio-site',
   },
+  {
+    id: 4,
+    title: 'Learnimal',
+    description:
+      'Hackathon-built Alacritty fork with a local AI tutor overlay you summon with Ctrl+Shift+E.',
+    image: `${base}learnimal.jpg`,
+    technologies: ['Rust', 'Python', 'FastAPI', 'Llama 3', 'Ollama', 'SQLite', 'AdalFlow'],
+    link: 'https://github.com/awnialq/Learnimal',
+    demo: './#/learnimal',
+  },
 ];
 
 const technologies = [
@@ -66,6 +76,11 @@ const technologies = [
   'Assembly',
   'Vite',
   'Material UI',
+  'Rust',
+  'Llama 3',
+  'Ollama',
+  'SQLite',
+  'AdalFlow',
 ];
 
 const Projects = () => {
