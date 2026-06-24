@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NES Emulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rgb-primary: 81, 255, 138;
+            --rgb-secondary: 74, 199, 255;
+            --rgb-accent: 255, 94, 94;
+            --rgb-bg: 6, 8, 18;
+            --rgb-panel: 12, 18, 34;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0;
+            font-family: "JetBrains Mono", monospace;
+            background: transparent;
+            color: rgb(231, 248, 238);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem 0 1rem;
+        }
+
+        p {
+            margin: 0 0 1.25rem;
+            color: rgb(161, 177, 201);
+            text-align: center;
+            max-width: 36rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .controls {
+            margin-bottom: 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        label.rom-button {
+            cursor: pointer;
+            padding: 0.6rem 1.4rem;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: rgb(10, 16, 22);
+            background: linear-gradient(120deg, rgba(81, 255, 138, 1), rgba(74, 199, 255, 0.92));
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        label.rom-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74, 199, 255, 0.25);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        #status {
+            font-size: 0.85rem;
+            color: rgb(var(--rgb-secondary));
+            max-width: 28rem;
+            text-align: center;
+        }
+
+        #status.error {
+            color: rgb(var(--rgb-accent));
+        }
+
+        #canvas {
+            width: 100%;
+            max-width: 768px;
+            height: auto;
+            aspect-ratio: 768 / 720;
+            border: 1px solid rgba(var(--rgb-secondary), 0.35);
+            border-radius: 10px;
+            background: #000;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        .legend {
+            margin-top: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(160deg, rgba(var(--rgb-panel), 0.84), rgba(var(--rgb-bg), 0.94));
+            border: 1px solid rgba(var(--rgb-secondary), 0.24);
+            border-radius: 14px;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            width: 100%;
+            max-width: 768px;
+        }
+
+        .legend dt {
+            font-weight: 700;
+            margin-top: 0.6rem;
+            color: rgb(var(--rgb-primary));
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.72rem;
+        }
+
+        .legend dt:first-child {
+            margin-top: 0;
+        }
+
+        .legend dd {
+            margin: 0.25rem 0 0;
+            color: rgb(161, 177, 201);
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <label class="rom-button" for="rom-input">Choose ROM (.nes)</label>
+        <input type="file" id="rom-input" accept=".nes">
+        <span id="status">Loading emulator…</span>
+    </div>
+
+    <canvas id="canvas" width="768" height="720" tabindex="0"></canvas>
+
+    <dl class="legend">
+        <dt>Controls</dt>
+        <dd>Click the game screen first, then use the keyboard.</dd>
+        <dd>A — NES A &nbsp;|&nbsp; D — NES B</dd>
+        <dd>Arrow keys — D-pad</dd>
+        <dd>- — Select &nbsp;|&nbsp; = — Start</dd>
+        <dt>Supported mappers</dt>
+        <dd>Mapper 0 (NROM) and Mapper 3 (CNROM)</dd>
+    </dl>
+
+    <script>
+        var statusEl = document.getElementById('status');
+        var canvasEl = document.getElementById('canvas');
+        var runtimeReady = false;
+        var lastError = '';
+
+        function setStatus(text, isError) {
+            statusEl.textContent = text;
+            statusEl.classList.toggle('error', !!isError);
+        }
+
+        var Module = {
+            canvas: canvasEl,
+            onRuntimeInitialized: function () {
+                runtimeReady = true;
+                setStatus('Ready — choose a ROM', false);
+            },
+            printErr: function (text) {
+                lastError = String(text).trim();
+                console.error(text);
+            },
+            onAbort: function (reason) {
+                setStatus('Emulator aborted: ' + (lastError || reason || 'unknown error'), true);
+            }
+        };
+    </script>
+    <script src="nes.js"></script>
+    <script>
+        // Mappers the C++ core supports. The WASM build has no -fexceptions, so an
+        // unsupported mapper makes the C++ Bus constructor throw, which aborts the
+        // whole runtime (every later ROM fails until a page reload). We mirror the
+        // header/mapper checks here in JS so load_rom is only ever called with a ROM
+        // the core can actually handle.
+        var SUPPORTED_MAPPERS = [0, 3];
+
+        function validateRom(bytes) {
+            if (
+                bytes.length < 16 ||
+                bytes[0] !== 0x4e || // 'N'
+                bytes[1] !== 0x45 || // 'E'
+                bytes[2] !== 0x53 || // 'S'
+                bytes[3] !== 0x1a
+            ) {
+                return { ok: false, message: 'Not a valid iNES (.nes) ROM file' };
+            }
+
+            var mapperId = ((bytes[7] >> 4) << 4) | (bytes[6] >> 4);
+            if (SUPPORTED_MAPPERS.indexOf(mapperId) === -1) {
+                return {
+                    ok: false,
+                    message:
+                        'Unsupported mapper ' +
+                        mapperId +
+                        ' — only mapper 0 (NROM) and 3 (CNROM) are supported',
+                };
+            }
+
+            return { ok: true };
+        }
+
+        function loadRomFile(file) {
+            if (!runtimeReady) {
+                setStatus('Emulator not ready yet — try again in a moment', true);
+                return;
+            }
+
+            setStatus('Loading ' + file.name + '…', false);
+            lastError = '';
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                var bytes = new Uint8Array(reader.result);
+
+                var check = validateRom(bytes);
+                if (!check.ok) {
+                    setStatus(check.message, true);
+                    return;
+                }
+
+                try {
+                    try {
+                        Module.FS.unlink('/rom.nes');
+                    } catch (e) {
+                        // first upload
+                    }
+                    Module.FS.writeFile('/rom.nes', bytes);
+                    var ok = Module.ccall('load_rom', 'number', ['string'], ['/rom.nes']);
+                    if (ok) {
+                        canvasEl.focus();
+                        setStatus('Running: ' + file.name, false);
+                    } else {
+                        setStatus(
+                            lastError ||
+                                'Failed to load ROM (unsupported mapper, invalid file, or SDL init failed)',
+                            true
+                        );
+                    }
+                } catch (err) {
+                    // Emscripten throws an 'unwind' sentinel when load_rom starts the
+                    // SDL main loop (simulate_infinite_loop). That's success, not an error.
+                    if (err === 'unwind' || (err && err.message === 'unwind')) {
+                        canvasEl.focus();
+                        setStatus('Running: ' + file.name, false);
+                    } else {
+                        var message =
+                            (err && err.message) || lastError || String(err) || 'unknown error';
+                        setStatus('Error: ' + message, true);
+                    }
+                }
+            };
+            reader.onerror = function () {
+                setStatus('Failed to read file', true);
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        document.getElementById('rom-input').addEventListener('change', function (event) {
+            var file = event.target.files[0];
+            if (file) {
+                loadRomFile(file);
+            }
+        });
+    </script>
+</body>
+</html>

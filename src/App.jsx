@@ -6,6 +6,7 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Skills from './pages/Skills';
 import NESEmu from './pages/NESEmu';
+import NESDemo from './pages/NESDemo';
 import MealSense from './pages/MealSense';
 import PortfolioSite from './pages/PortfolioSite';
 import Learnimal from './pages/Learnimal';
@@ -21,6 +22,7 @@ function AnimatedRoutes() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/nesemu" element={<NESEmu />} />
+        <Route path="/nes-demo" element={<NESDemo />} />
         <Route path="/mealsense" element={<MealSense />} />
         <Route path="/portfolio-site" element={<PortfolioSite />} />
         <Route path="/learnimal" element={<Learnimal />} />

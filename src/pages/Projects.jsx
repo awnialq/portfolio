@@ -33,6 +33,7 @@ const projects = [
     technologies: ['C++', 'Assembly'],
     link: 'https://github.com/awnialq/NES-Emulator',
     demo: './#/nesemu',
+    playDemo: './#/nes-demo',
   },
   {
     id: 2,
@@ -221,8 +222,20 @@ const Projects = () => {
                           color: 'secondary.main',
                         }}
                       >
-                        Blog/Demo
+                        Blog
                       </Button>
+                      {project.playDemo ? (
+                        <Button
+                          size="small"
+                          href={project.playDemo}
+                          target="_blank"
+                          sx={{
+                            color: 'primary.main',
+                          }}
+                        >
+                          Play Demo
+                        </Button>
+                      ) : null}
                     </CardActions>
                   </ProjectCard>
                 </MotionDiv>
