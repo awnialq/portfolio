@@ -32,6 +32,7 @@ const navItems = [
   { name: 'Skills', path: '/skills' },
   { name: 'NES Blog', path: '/nesemu' },
   { name: 'MealSense Blog', path: '/mealsense' },
+  { name: 'Learnimal Blog', path: '/learnimal' },
   { name: 'Site Blog', path: '/portfolio-site' },
   { name: 'Contact', path: '/contact' },
 ];
