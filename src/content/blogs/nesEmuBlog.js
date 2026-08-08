@@ -1,23 +1,23 @@
 const nesEmuBlog = {
   title: 'NES Emulator Project',
   subtitle: 'A low-level journey into 6502 and PPU internals',
-  lastUpdated: '2025-08-14',
+  lastUpdated: '08/08/2026',
   sections: [
     {
       id: 'progress',
       title: 'Current Progress',
       bullets: [
         'CPU implementation: complete (remaining illegal opcode edge cases).',
-        'Cartridge loading: complete for standard iNES ROMs.',
-        'Graphics processing (PPU): in progress.',
-        'Audio processing: not started.',
-        'Input handling: not started.',
+        'Cartridge loading: Mapper 000 and 003 complete',
+        'Graphics processing (PPU): complete.',
+        'Audio processing: in progress.',
+        'Input handling: complete.',
       ],
     },
     {
       id: 'stack',
       title: 'Technical Stack',
-      bullets: ['C++ for core emulation logic.', 'SDL3 for rendering and runtime input handling.'],
+      bullets: ['C++ for core emulation logic.', 'SDL2 for rendering and runtime input handling.', 'Emscripten compiler for web integration'],
     },
     {
       id: 'implementation',
@@ -35,7 +35,7 @@ const nesEmuBlog = {
       paragraphs: [
         'Addressing modes were the most difficult concept initially; understanding them required piecing together multiple references and experimenting directly in code.',
         'The project timeline was longer than expected, but each debugging cycle improved the architecture and confidence for the next subsystem.',
-        'Next milestone: continue PPU implementation and finish a full graphics path before moving into audio.',
+        'PPU was a complex topic but it made more sense after some work',
       ],
     },
   ],
