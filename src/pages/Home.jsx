@@ -10,7 +10,7 @@ const Home = () => {
     <Stack spacing={{ xs: 6, md: 8 }}>
       <Section>
         <Grid container spacing={4} alignItems="center" sx={{ minHeight: { md: '72vh' } }}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <MotionDiv
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ const Home = () => {
               </Box>
             </MotionDiv>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <MotionDiv
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -95,7 +95,7 @@ const Home = () => {
         subtitle="I enjoy working where abstraction meets hardware: memory, instruction flow, and performance-sensitive runtime behavior."
       >
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <MotionDiv
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -113,7 +113,7 @@ const Home = () => {
             </MotionDiv>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <MotionDiv
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}

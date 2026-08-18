@@ -65,7 +65,7 @@ const Contact = () => {
         >
           <Grid container spacing={4} justifyContent="center">
             {socialLinks.map((link, index) => (
-              <Grid item xs={12} sm={6} md={3} key={link.name}>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={link.name}>
                 <MotionDiv
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -109,7 +109,7 @@ const Contact = () => {
             </Typography>
             <Grid container spacing={4} justifyContent="center">
               {contactInfo.map((info, index) => (
-                <Grid item xs={12} sm={6} key={index}>
+                <Grid size={{ xs: 12, sm: 6 }} key={index}>
                   <MotionDiv
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

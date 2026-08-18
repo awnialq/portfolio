@@ -66,7 +66,7 @@ const Skills = () => {
       >
         <Grid container spacing={4}>
           {sortedSkills.map((category, index) => (
-            <Grid item xs={12} md={4} key={category.category}>
+            <Grid size={{ xs: 12, md: 6 }} key={category.category}>
               <MotionDiv
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -121,7 +121,7 @@ const Skills = () => {
           </Typography>
           <Grid container spacing={2}>
             {['Problem Solving', 'Team Collaboration', 'Agile Methodologies', 'Technical Writing', 'Performance Optimization', 'Low-Level Debugging'].map((skill) => (
-              <Grid item xs={6} sm={3} key={skill}>
+              <Grid size={{ xs: 6, sm: 3 }} key={skill}>
                 <MotionDiv
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
