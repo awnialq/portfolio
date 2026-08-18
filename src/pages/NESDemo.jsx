@@ -66,7 +66,7 @@ const NESDemo = () => {
       <Section
         eyebrow="Playable Demo"
         title="NES Emulator — Play in Your Browser"
-        subtitle="Upload your own .nes ROM and play it right here. The emulator is my C++ NES core compiled to WebAssembly. Click the screen first, then use the keyboard to play."
+        subtitle="Upload your own .nes ROM and play it right here. The emulator is my C++ NES core compiled to WebAssembly. Click the screen first, then use the keyboard to play. No ROM handy? A recorded demo plays on the screen until you load one."
       >
         <Stack spacing={3}>
           <Paper
@@ -83,6 +83,7 @@ const NESDemo = () => {
               src={`${base}nes/index.html`}
               title="NES Emulator"
               scrolling="no"
+              allow="fullscreen"
               sx={{
                 width: '100%',
                 border: 'none',
@@ -105,6 +106,12 @@ const NESDemo = () => {
             <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
               Supported mappers: 0 (NROM) and 3 (CNROM). Audio is not yet implemented.
               If a ROM fails to load, it likely uses an unsupported mapper.
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+              Until you load a ROM, the screen above shows a narrated recording rather
+              than live emulation: the core building from source, then running Super
+              Mario Bros. It plays muted by default &mdash; unmute it for the
+              commentary. Load a ROM and it hands off to the real thing.
             </Typography>
             <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
               <Button
