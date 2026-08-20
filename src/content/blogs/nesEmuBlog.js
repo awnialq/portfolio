@@ -1,17 +1,19 @@
 const nesEmuBlog = {
   title: 'NES Emulator Project',
   subtitle: 'A low-level journey into 6502 and PPU internals',
-  lastUpdated: '08/08/2026',
+  lastUpdated: '2026-08-08',
+  navLabel: 'Read the build log',
+  tagline: '6502 · PPU · mappers',
   sections: [
     {
       id: 'progress',
       title: 'Current Progress',
       bullets: [
-        'CPU implementation: complete (remaining illegal opcode edge cases).',
-        'Cartridge loading: Mapper 000 and 003 complete',
-        'Graphics processing (PPU): complete.',
-        'Audio processing: in progress.',
-        'Input handling: complete.',
+        { status: 'done', text: 'CPU implementation: complete (remaining illegal opcode edge cases).' },
+        { status: 'done', text: 'Cartridge loading: Mapper 000 and 003 complete.' },
+        { status: 'done', text: 'Graphics processing (PPU): complete.' },
+        { status: 'done', text: 'Input handling: complete.' },
+        { status: 'live', text: 'Audio processing: in progress.' },
       ],
     },
     {

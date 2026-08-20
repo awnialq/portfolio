@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import BlogArticle from '../components/blog/BlogArticle';
 import nesEmuBlog from '../content/blogs/nesEmuBlog';
+import { actionFill, shade, text } from '../design/tokens';
 
 const MotionDiv = motion.div;
 
@@ -20,13 +21,9 @@ const NESEmu = () => {
               to="/nes-demo"
               variant="contained"
               sx={{
-                color: 'rgb(10, 16, 22)',
-                background:
-                  'linear-gradient(120deg, rgba(81, 255, 138, 1), rgba(74, 199, 255, 0.92))',
-                '&:hover': {
-                  background:
-                    'linear-gradient(120deg, rgba(74, 199, 255, 1), rgba(81, 255, 138, 0.95))',
-                },
+                color: text('inverse'),
+                background: actionFill('r'),
+                '&:hover': { background: shade('r', 0.88) },
               }}
             >
               Play the Emulator

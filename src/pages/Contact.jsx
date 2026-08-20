@@ -9,6 +9,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import DescriptionIcon from '@mui/icons-material/Description';
 import Section from '../components/ui/Section';
+import { actionFill, bg, c, hairline, panelFill, shade, text } from '../design/tokens';
 
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -20,8 +21,8 @@ const MotionDiv = motion.div;
 const ContactCard = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   paddingTop: theme.spacing(2),
-  background: 'linear-gradient(160deg, rgba(12, 18, 34, 0.86), rgba(8, 12, 24, 0.9))',
-  border: '1px solid rgba(74, 199, 255, 0.2)',
+  background: panelFill,
+  border: hairline('b'),
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
@@ -30,7 +31,7 @@ const ContactCard = styled(Paper)(({ theme }) => ({
   transition: 'transform 0.3s ease-in-out, border-color 0.3s ease-in-out',
   '&:hover': {
     transform: 'translateY(-5px)',
-    borderColor: 'rgba(81, 255, 138, 0.42)',
+    borderColor: c('b', 'edge'),
   },
 }));
 
@@ -85,13 +86,13 @@ const Contact = () => {
                         fontSize: '2.5rem',
                         mb: 0.5,
                         '&:hover': {
-                          color: 'secondary.main',
+                          color: c('g', 'solid'),
                         },
                       }}
                     >
                       {link.icon}
                     </IconButton>
-                    <Typography variant="h3" sx={{ mb: 1, color: 'primary.main' }}>
+                    <Typography variant="h3" sx={{ mb: 1 }}>
                       {link.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -104,7 +105,7 @@ const Contact = () => {
           </Grid>
 
           <Box sx={{ mt: 6 }}>
-            <Typography variant="h3" sx={{ mb: 3, color: 'secondary.main' }}>
+            <Typography variant="h3" sx={{ mb: 3 }}>
               Direct Contact
             </Typography>
             <Grid container spacing={4} justifyContent="center">
@@ -147,8 +148,8 @@ const Contact = () => {
               sx={{ mb: 3 }}
             >
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <DescriptionIcon sx={{ color: 'secondary.main', fontSize: '2rem' }} />
-                <Typography variant="h3" sx={{ color: 'secondary.main' }}>
+                <DescriptionIcon sx={{ color: c('b', 'solid'), fontSize: '2rem' }} />
+                <Typography variant="h3">
                   Resume
                 </Typography>
               </Box>
@@ -159,13 +160,9 @@ const Contact = () => {
                   variant="contained"
                   startIcon={<DownloadIcon />}
                   sx={{
-                    color: 'rgb(10, 16, 22)',
-                    background:
-                      'linear-gradient(120deg, rgba(81, 255, 138, 1), rgba(74, 199, 255, 0.92))',
-                    '&:hover': {
-                      background:
-                        'linear-gradient(120deg, rgba(74, 199, 255, 1), rgba(81, 255, 138, 0.95))',
-                    },
+                    color: text('inverse'),
+                    background: actionFill('g'),
+                    '&:hover': { background: shade('g', 0.88) },
                   }}
                 >
                   Download
@@ -177,11 +174,11 @@ const Contact = () => {
                   variant="outlined"
                   startIcon={<OpenInNewIcon />}
                   sx={{
-                    borderColor: 'rgba(74, 199, 255, 0.4)',
+                    borderColor: c('b', 'edge'),
                     color: 'text.primary',
                     '&:hover': {
-                      borderColor: 'secondary.main',
-                      backgroundColor: 'rgba(74, 199, 255, 0.1)',
+                      borderColor: c('b', 'solid'),
+                      backgroundColor: c('b', 'hover'),
                     },
                   }}
                 >
@@ -193,8 +190,8 @@ const Contact = () => {
             <Paper
               sx={{
                 p: { xs: 1, md: 1.5 },
-                background: 'linear-gradient(160deg, rgba(12, 18, 34, 0.86), rgba(8, 12, 24, 0.9))',
-                border: '1px solid rgba(74, 199, 255, 0.2)',
+                background: panelFill,
+                border: hairline('b'),
                 overflow: 'hidden',
               }}
             >
@@ -207,7 +204,7 @@ const Contact = () => {
                   height: { xs: 520, sm: 720, md: 900 },
                   border: 'none',
                   borderRadius: 1,
-                  backgroundColor: 'rgba(8, 12, 24, 0.9)',
+                  backgroundColor: bg('sunk', 0.9),
                 }}
               />
             </Paper>

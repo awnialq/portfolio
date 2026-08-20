@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Box, Typography, Grid, Chip, Card, CardContent, CardMedia, CardActions, Button } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import Section from '../components/ui/Section';
+import { c, hairline, panelFill, text } from '../design/tokens';
 
 const ProjectCard = styled(Card)(() => ({
   width: '100%',
@@ -10,12 +12,12 @@ const ProjectCard = styled(Card)(() => ({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  background: 'linear-gradient(155deg, rgba(12, 18, 34, 0.86), rgba(8, 12, 24, 0.9))',
-  border: '1px solid rgba(74, 199, 255, 0.2)',
+  background: panelFill,
+  border: hairline('b'),
   transition: 'transform 0.3s ease-in-out, border-color 0.3s ease-in-out',
   '&:hover': {
     transform: 'translateY(-5px)',
-    borderColor: 'rgba(81, 255, 138, 0.4)',
+    borderColor: c('b', 'edge'),
   },
 }));
 
@@ -32,8 +34,8 @@ const projects = [
     image: `${base}nesemu.jpg`,
     technologies: ['C++', 'Assembly'],
     link: 'https://github.com/awnialq/NES-Emulator',
-    demo: './#/nesemu',
-    playDemo: './#/nes-demo',
+    demo: '/nesemu',
+    playDemo: '/nes-demo',
   },
   {
     id: 2,
@@ -42,7 +44,7 @@ const projects = [
     image: `${base}mealSense.jpg`,
     technologies: ['React Native', 'FastAPI', 'TypeScript','Firebase','Python'],
     link: 'https://github.com/Victor-JB/Hack4Hum2025',
-    demo: './#/mealsense',
+    demo: '/mealsense',
   },
   {
     id: 3,
@@ -51,17 +53,17 @@ const projects = [
     image: `${base}portfolio-site.jpg`,
     technologies: ['React JS', 'Vite', 'Material UI'],
     link: 'https://github.com/awnialq/portfolio',
-    demo: './#/portfolio-site',
+    demo: '/portfolio-site',
   },
   {
     id: 4,
-    title: 'Learnimal',
+    title: 'Learnminal',
     description:
-      'Hackathon-built Alacritty fork with a local AI tutor overlay you summon with Ctrl+Shift+E.',
+      'An Agentic Terminal designed for you to learn the command line.',
     image: `${base}learnimal.jpg`,
-    technologies: ['Rust', 'Python', 'FastAPI', 'Llama 3', 'Ollama', 'SQLite', 'AdalFlow'],
-    link: 'https://github.com/awnialq/Learnimal',
-    demo: './#/learnimal',
+    technologies: ['Rust', 'Local AI', 'Ollama', 'SQLite'],
+    link: 'https://github.com/awnialq/Learnminal',
+    demo: '/learnimal',
   },
 ];
 
@@ -78,10 +80,9 @@ const technologies = [
   'Vite',
   'Material UI',
   'Rust',
-  'Llama 3',
   'Ollama',
   'SQLite',
-  'AdalFlow',
+  'Local AI'
 ];
 
 const Projects = () => {
@@ -109,15 +110,12 @@ const Projects = () => {
               label={tech}
               onClick={() => setSelectedTech(tech)}
               sx={{
-                background:
-                  selectedTech === tech ? 'rgba(81, 255, 138, 0.88)' : 'rgba(74, 199, 255, 0.1)',
-                color: selectedTech === tech ? 'rgb(7, 15, 20)' : 'text.primary',
+                background: selectedTech === tech ? c('g', 'solid') : c('b', 'hover'),
+                color: selectedTech === tech ? text('inverse') : 'text.primary',
                 border: '1px solid',
-                borderColor:
-                  selectedTech === tech ? 'rgba(81, 255, 138, 0.5)' : 'rgba(74, 199, 255, 0.25)',
+                borderColor: selectedTech === tech ? c('g', 'edge') : c('b', 'hairline'),
                 '&:hover': {
-                  background:
-                    selectedTech === tech ? 'rgba(74, 199, 255, 0.92)' : 'rgba(74, 199, 255, 0.2)',
+                  background: selectedTech === tech ? c('g', 'solid') : c('b', 'active'),
                 },
               }}
             />
@@ -195,9 +193,9 @@ const Projects = () => {
                             label={tech}
                             size="small"
                             sx={{
-                              background: 'rgba(81, 255, 138, 0.12)',
-                              color: 'primary.main',
-                              border: '1px solid rgba(81, 255, 138, 0.22)',
+                              background: c('b', 'wash'),
+                              color: c('b', 'solid'),
+                              border: hairline('b'),
                             }}
                           />
                         ))}
@@ -208,30 +206,25 @@ const Projects = () => {
                         size="small"
                         href={project.link}
                         target="_blank"
-                        sx={{ 
-                          color: 'secondary.main',
-                        }}
+                        rel="noopener noreferrer"
+                        sx={{ color: c('g', 'solid') }}
                       >
                         GitHub
                       </Button>
                       <Button
                         size="small"
-                        href={project.demo}
-                        target="_blank"
-                        sx={{ 
-                          color: 'secondary.main',
-                        }}
+                        component={Link}
+                        to={project.demo}
+                        sx={{ color: c('g', 'solid') }}
                       >
                         Blog
                       </Button>
                       {project.playDemo ? (
                         <Button
                           size="small"
-                          href={project.playDemo}
-                          target="_blank"
-                          sx={{
-                            color: 'primary.main',
-                          }}
+                          component={Link}
+                          to={project.playDemo}
+                          sx={{ color: c('r', 'solid') }}
                         >
                           Play Demo
                         </Button>

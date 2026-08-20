@@ -4,7 +4,8 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist'] },
+  // nes.js is an Emscripten build artifact, not authored source.
+  { ignores: ['dist', 'public/nes/nes.js'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {

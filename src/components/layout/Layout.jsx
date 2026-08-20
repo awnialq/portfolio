@@ -12,18 +12,9 @@ const Layout = ({ children }) => {
         overflowX: 'clip',
       }}
     >
+      {/* Flat ground plus one even structural texture. The stacked radial
+          washes that used to sit here pooled color behind the copy. */}
       <Box className="app-shell-grid" />
-      <Box
-        aria-hidden
-        sx={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: -1,
-          pointerEvents: 'none',
-          background:
-            'radial-gradient(circle at 20% 18%, rgba(81, 255, 138, 0.14), transparent 34%), radial-gradient(circle at 75% 10%, rgba(74, 199, 255, 0.2), transparent 33%), radial-gradient(circle at 76% 84%, rgba(255, 94, 94, 0.11), transparent 36%)',
-        }}
-      />
 
       <Navbar />
       <Box
@@ -46,4 +37,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout; 
+export default Layout;

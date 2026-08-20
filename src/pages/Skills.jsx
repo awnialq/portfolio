@@ -2,6 +2,7 @@ import { Box, Typography, Grid, Paper, LinearProgress } from '@mui/material';
 import { motion } from 'framer-motion';
 import { styled } from '@mui/material/styles';
 import Section from '../components/ui/Section';
+import { bg, c, hairline, panelFill } from '../design/tokens';
 
 const PROFICIENCY_STEPS = ['Beginner', 'Novice', 'Intermediate', 'Proficient', 'Advanced'];
 const MAX_LEVEL = PROFICIENCY_STEPS.length;
@@ -12,13 +13,13 @@ const getLevelLabel = (level) => PROFICIENCY_STEPS[level - 1] ?? 'Beginner';
 
 const SkillCard = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
-  background: 'linear-gradient(160deg, rgba(12, 18, 34, 0.86), rgba(8, 12, 24, 0.9))',
-  border: '1px solid rgba(74, 199, 255, 0.2)',
+  background: panelFill,
+  border: hairline('b'),
   height: '100%',
   transition: 'border-color 0.25s ease, transform 0.25s ease',
   '&:hover': {
     transform: 'translateY(-4px)',
-    borderColor: 'rgba(81, 255, 138, 0.42)',
+    borderColor: c('b', 'edge'),
   }
 }));
 
@@ -37,6 +38,7 @@ const skills = [
     category: 'Engineering & Tooling',
     items: [
       { name: 'Git', level: 5 },
+      { name: 'Claude Code', level: 4 },
       { name: 'Linux Development Workflow', level: 4 },
       { name: 'Ghidra (Reverse Engineering)', level: 3 },
       { name: 'MatLAB', level: 3 },
@@ -73,7 +75,7 @@ const Skills = () => {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
                 <SkillCard>
-                  <Typography variant="h3" sx={{ mb: 3, color: 'primary.main' }}>
+                  <Typography variant="h3" sx={{ mb: 3 }}>
                     {category.category}
                   </Typography>
                   {category.items.map((skill) => (
@@ -82,7 +84,7 @@ const Skills = () => {
                         <Typography variant="body1">
                           {skill.name}
                         </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        <Typography variant="caption" sx={{ color: c('b', 'solid'), opacity: 0.8 }}>
                           {getLevelLabel(skill.level)}
                         </Typography>
                       </Box>
@@ -92,11 +94,8 @@ const Skills = () => {
                         sx={{
                           height: 8,
                           borderRadius: 4,
-                          backgroundColor: 'rgba(74, 199, 255, 0.16)',
-                          '& .MuiLinearProgress-bar': {
-                            background:
-                              'linear-gradient(120deg, rgba(81, 255, 138, 0.95), rgba(74, 199, 255, 0.95))',
-                          },
+                          backgroundColor: c('b', 'hover'),
+                          '& .MuiLinearProgress-bar': { backgroundColor: c('g', 'solid') },
                         }}
                       />
                       <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 0.8 }}>
@@ -116,7 +115,7 @@ const Skills = () => {
         </Grid>
 
         <Box sx={{ mt: 6 }}>
-          <Typography variant="h3" sx={{ mb: 3, color: 'secondary.main' }}>
+          <Typography variant="h3" sx={{ mb: 3 }}>
             Additional Skills
           </Typography>
           <Grid container spacing={2}>
@@ -130,9 +129,9 @@ const Skills = () => {
                     sx={{
                       p: 2,
                       textAlign: 'center',
-                      background: 'rgba(8, 12, 24, 0.8)',
-                      border: '1px solid rgba(74, 199, 255, 0.2)',
-                      cursor: 'pointer',
+                      background: bg('sunk', 0.8),
+                      border: hairline('b'),
+                      cursor: 'default',
                       '& .MuiTypography-root': { fontWeight: 500 },
                     }}
                   >

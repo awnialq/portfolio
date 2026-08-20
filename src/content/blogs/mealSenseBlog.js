@@ -2,6 +2,8 @@ const mealSenseBlog = {
   title: 'MealSense',
   subtitle: 'A personalized nutrition assistant for Santa Clara students',
   lastUpdated: '2026-04-13',
+  navLabel: 'MealSense',
+  tagline: 'Nutrition assistant',
   sections: [
     {
       id: 'overview',

@@ -2,6 +2,9 @@ import { Box, Button, Grid, Paper, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Section from '../components/ui/Section';
+import Convergence from '../components/brand/Convergence';
+import { actionFill, c, shade, text } from '../design/tokens';
+import { fonts } from '../theme';
 
 const MotionDiv = motion.div;
 
@@ -9,19 +12,15 @@ const Home = () => {
   return (
     <Stack spacing={{ xs: 6, md: 8 }}>
       <Section>
-        <Grid container spacing={4} alignItems="center" sx={{ minHeight: { md: '72vh' } }}>
+        <Grid container spacing={4} alignItems="center" sx={{ minHeight: { md: '54vh' }, mb: { xs: 1, md: 2 } }}>
           <Grid size={{ xs: 12, md: 6 }}>
             <MotionDiv
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Typography variant="body2" color="secondary.main" sx={{ letterSpacing: '0.1em', mb: 1 }}>
-                COMPUTER ENGINEERING STUDENT
-              </Typography>
-
               <Typography variant="h1" sx={{ mb: 2 }}>
-                Hi, I'm <span className="rgb-text">Awni AlQuraini</span>
+                Hi, I'm <Convergence>Awni AlQuraini</Convergence>
               </Typography>
 
               <Typography variant="h3" color="text.secondary" sx={{ mb: 2.5 }}>
@@ -37,13 +36,9 @@ const Home = () => {
                   to="/projects"
                   variant="contained"
                   sx={{
-                    color: 'rgb(10, 16, 22)',
-                    background:
-                      'linear-gradient(120deg, rgba(81, 255, 138, 1), rgba(74, 199, 255, 0.92))',
-                    '&:hover': {
-                      background:
-                        'linear-gradient(120deg, rgba(74, 199, 255, 1), rgba(81, 255, 138, 0.95))',
-                    },
+                    color: text('inverse'),
+                    background: actionFill('g'),
+                    '&:hover': { background: shade('g', 0.88) },
                   }}
                 >
                   Explore Projects
@@ -54,11 +49,11 @@ const Home = () => {
                   to="/contact"
                   variant="outlined"
                   sx={{
-                    borderColor: 'rgba(74, 199, 255, 0.4)',
+                    borderColor: c('b', 'edge'),
                     color: 'text.primary',
                     '&:hover': {
-                      borderColor: 'secondary.main',
-                      backgroundColor: 'rgba(74, 199, 255, 0.1)',
+                      borderColor: c('b', 'solid'),
+                      backgroundColor: c('b', 'hover'),
                     },
                   }}
                 >
@@ -75,10 +70,10 @@ const Home = () => {
               style={{ textAlign: 'center' }}
             >
               <Paper className="section-panel" sx={{ p: { xs: 2.5, md: 3.5 }, textAlign: 'left' }}>
-                <Typography variant="h4" sx={{ color: 'primary.main', mb: 2 }}>
+                <Typography variant="h4" sx={{ color: c('b', 'solid'), mb: 2 }}>
                   system.status
                 </Typography>
-                <Box component="pre" sx={{ m: 0, color: 'text.secondary', fontSize: '0.95rem', lineHeight: 1.8 }}>
+                <Box component="pre" sx={{ m: 0, color: 'text.secondary', fontSize: '0.95rem', lineHeight: 1.8, fontFamily: fonts.data, whiteSpace: 'pre-wrap' }}>
 {`> major: Computer Science + Engineering
 > focus: low-level + embedded systems
 > next_goal: build robust tools end-to-end`}
@@ -122,7 +117,7 @@ const Home = () => {
               style={{ textAlign: 'center' }}
             >
               <Paper className="section-panel" sx={{ p: 3, textAlign: 'left' }}>
-                <Typography variant="h4" sx={{ color: 'secondary.main', mb: 2 }}>
+                <Typography variant="h4" sx={{ color: c('b', 'solid'), mb: 2 }}>
                   What I optimize for
                 </Typography>
                 <Box component="ul" sx={{ m: 0, pl: 2.5, color: 'text.secondary' }}>

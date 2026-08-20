@@ -1,48 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;125,600;125,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 
-:root {
-  --rgb-primary: 81, 255, 138;
-  --rgb-secondary: 74, 199, 255;
-  --rgb-accent: 255, 94, 94;
-  --rgb-bg: 6, 8, 18;
-  --rgb-panel: 12, 18, 34;
-}
+/* Color lives in src/design/tokens.js. The --ch-* / --ground-* / --ink-*
+   custom properties below are injected at runtime by CssBaseline from that
+   module, so there is no second copy to drift. */
 
 #root {
   min-height: 100vh;
 }
 
 a {
-  color: rgb(var(--rgb-secondary));
+  color: rgb(var(--ch-g));
   text-decoration: none;
 }
 
 a:hover {
-  color: rgb(var(--rgb-primary));
+  color: rgb(var(--ch-g));
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
+/* Even, full-bleed structural texture. No radial mask — the mask is what
+   used to pool this into a halo behind the centered copy. */
 .app-shell-grid {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.2;
+  background-color: rgb(var(--ground-base));
   background-image:
-    linear-gradient(to right, rgba(var(--rgb-secondary), 0.18) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(var(--rgb-secondary), 0.14) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: radial-gradient(circle at center, black 20%, transparent 90%);
+    linear-gradient(to right, rgba(var(--ch-b), 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--ch-b), 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 .section-panel {
-  background: linear-gradient(160deg, rgba(var(--rgb-panel), 0.84), rgba(var(--rgb-bg), 0.94));
-  border: 1px solid rgba(var(--rgb-secondary), 0.24);
+  background: linear-gradient(160deg, rgba(var(--ground-panel), 0.86), rgba(var(--ground-base), 0.92));
+  border: 1px solid rgba(var(--ch-b), 0.22);
   border-radius: 16px;
 }
 
-.rgb-text {
-  background: linear-gradient(110deg, rgba(var(--rgb-primary), 1), rgba(var(--rgb-secondary), 1) 60%, rgba(var(--rgb-accent), 1));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* The convergence wordmark — three channels, offset, screen-blended.
+   The one place on the site where R, G and B touch. */
+.converge {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  color: transparent;
+}
+
+.converge__layer {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.converge__layer--r { color: rgb(var(--ch-r)); }
+.converge__layer--g { color: rgb(var(--ch-g)); }
+.converge__layer--b { color: rgb(var(--ch-b)); }
+
+.converge--animate .converge__layer {
+  animation: converge 620ms cubic-bezier(0.16, 0.84, 0.32, 1) both;
+}
+
+.converge--animate .converge__layer--r { --dx: -0.14em; --dy: -0.05em; }
+.converge--animate .converge__layer--g { --dx:  0.11em; --dy:  0.06em; }
+.converge--animate .converge__layer--b { --dx: -0.02em; --dy:  0.13em; }
+
+@keyframes converge {
+  from { transform: translate(var(--dx), var(--dy)); }
+  to   { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .converge--animate .converge__layer {
+    animation: none;
+    transform: none;
+  }
 }

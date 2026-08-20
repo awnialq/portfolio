@@ -3,6 +3,7 @@ import { Box, Button, Paper, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Section from '../components/ui/Section';
+import { bg, c, hairline } from '../design/tokens';
 
 const MotionDiv = motion.div;
 
@@ -72,9 +73,9 @@ const NESDemo = () => {
           <Paper
             sx={{
               p: { xs: 1.5, md: 2.5 },
-              border: '1px solid rgba(81, 255, 138, 0.35)',
-              background:
-                'linear-gradient(140deg, rgba(81, 255, 138, 0.08), rgba(74, 199, 255, 0.08) 48%, rgba(255, 94, 94, 0.08))',
+              border: hairline('r'),
+              borderLeft: `2px solid ${c('r', 'solid')}`,
+              backgroundColor: c('r', 'wash'),
             }}
           >
             <Box
@@ -96,11 +97,11 @@ const NESDemo = () => {
           <Paper
             sx={{
               p: { xs: 2.25, md: 3 },
-              backgroundColor: 'rgba(12, 18, 34, 0.8)',
-              border: '1px solid rgba(74, 199, 255, 0.24)',
+              backgroundColor: bg('panel', 0.8),
+              border: hairline('b'),
             }}
           >
-            <Typography variant="h3" sx={{ mb: 1.5, color: 'primary.main' }}>
+            <Typography variant="h3" sx={{ mb: 1.5 }}>
               Notes
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
@@ -119,11 +120,11 @@ const NESDemo = () => {
                 to="/nesemu"
                 variant="outlined"
                 sx={{
-                  borderColor: 'rgba(74, 199, 255, 0.4)',
+                  borderColor: c('b', 'edge'),
                   color: 'text.primary',
                   '&:hover': {
-                    borderColor: 'secondary.main',
-                    backgroundColor: 'rgba(74, 199, 255, 0.1)',
+                    borderColor: c('b', 'solid'),
+                    backgroundColor: c('b', 'hover'),
                   },
                 }}
               >
@@ -135,11 +136,11 @@ const NESDemo = () => {
                 rel="noopener noreferrer"
                 variant="outlined"
                 sx={{
-                  borderColor: 'rgba(74, 199, 255, 0.4)',
+                  borderColor: c('b', 'edge'),
                   color: 'text.primary',
                   '&:hover': {
-                    borderColor: 'secondary.main',
-                    backgroundColor: 'rgba(74, 199, 255, 0.1)',
+                    borderColor: c('b', 'solid'),
+                    backgroundColor: c('b', 'hover'),
                   },
                 }}
               >

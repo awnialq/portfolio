@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import { c } from '../../design/tokens';
 
 const Section = ({ eyebrow, title, subtitle, children, sx }) => {
   return (
@@ -11,18 +12,19 @@ const Section = ({ eyebrow, title, subtitle, children, sx }) => {
       }}
     >
       {eyebrow ? (
-        <Typography
-          variant="body2"
-          sx={{
-            mb: 1,
-            color: 'secondary.main',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            fontWeight: 700,
-          }}
-        >
-          {eyebrow}
-        </Typography>
+        <Box sx={{ mb: 1.5, pb: 1, borderBottom: `1px solid ${c('b', 'hairline')}` }}>
+          <Typography
+            variant="caption"
+            sx={{
+              color: c('b', 'solid'),
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              fontWeight: 600,
+            }}
+          >
+            {eyebrow}
+          </Typography>
+        </Box>
       ) : null}
 
       {title ? (
